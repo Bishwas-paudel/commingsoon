@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Coming Soon</title>
+  <style>
+    /* Resetting margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and main container styling */
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #323433, #402acf);
+      color: white;
+    }
+
+    .coming-soon-container {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 5rem;
+      letter-spacing: 5px;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      opacity: 0.8;
+    }
+
+    .countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      display: flex;
+      justify-content: center;
+      animation: pulse 1s infinite alternate;
+    }
+
+    .countdown div {
+      margin: 0 10px;
+      text-align: center;
+    }
+
+    .countdown div span {
+      font-size: 3rem;
+      display: block;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      from { 
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="coming-soon-container">
+    <h1>Coming Soon</h1>
+    <h2>new things are getting ready!</h2>
+    <div class="countdown" id="countdown">
+      <div><span id="days">00</span>Days</div>
+      <div><span id="hours">00</span>Hours</div>
+      <div><span id="minutes">00</span>Minutes</div>
+      <div><span id="seconds">00</span>Seconds</div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2024 Bishwas Paudel | All Rights Reserved
+  </footer>
+
+  <script>
+    // Set the date we're counting down to
+    const countDownDate = new Date("Dec 31, 2024 23:59:59").getTime();
+
+    // Update the countdown every 1 second
+    const countdownFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Output the result in the respective elements
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+
+      // If the countdown is finished, display a message
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.querySelector(".countdown").innerHTML = "We are live!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
